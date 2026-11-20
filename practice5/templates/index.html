@@ -8,56 +8,142 @@
 </head>
 <body>
     <div class="container">
-        <h1>Інформаційна система обліку документів</h1>
+        <header class="hero">
+            <div class="hero-content">
+                <div class="hero-topline">
+                    <span class="hero-tag">ЕЛЕКТРОННИЙ РЕЄСТР</span>
+                    <span class="country"><span class="flag" aria-hidden="true"></span> УКРАЇНА</span>
+                </div>
+                <h1>Інформаційна система<br>обліку документів</h1>
+                <div class="hero-line"></div>
+            </div>
+            <div class="emblem-box">
+                <img src="https://upload.wikimedia.org/wikipedia/commons/9/95/Lesser_Coat_of_Arms_of_Ukraine.svg"
+                     alt="Малий Державний герб України" width="70" height="98">
+            </div>
+        </header>
 
-        <h2>Додати документ</h2>
-        <form id="document-form">
-            <label for="number">Номер:</label>
-            <input id="number" type="text" maxlength="50" required placeholder="Наприклад, 12/26">
+        <main class="main-content">
+            <section class="panel">
+                <div class="section-heading">
+                    <span class="section-number">01</span>
+                    <div>
+                        <h2>Додати документ</h2>
+                        <p class="section-description">Заповніть дані для нового запису</p>
+                    </div>
+                </div>
 
-            <label for="type_id">Тип:</label>
-            <select id="type_id" required></select>
+                <form id="document-form" class="document-form">
+                    <div class="field field-quarter">
+                        <label for="number">Номер документа</label>
+                        <input id="number" type="text" maxlength="50" required placeholder="Наприклад, 12/26">
+                    </div>
 
-            <label for="content">Короткий зміст:</label>
-            <input id="content" type="text" required placeholder="Про що документ">
+                    <div class="field field-quarter">
+                        <label for="type_id">Тип документа</label>
+                        <select id="type_id" required></select>
+                    </div>
 
-            <label for="date">Дата:</label>
-            <input id="date" type="date" required>
+                    <div class="field field-quarter">
+                        <label for="date">Дата документа</label>
+                        <input id="date" type="date" required>
+                    </div>
 
-            <label for="completion_status">Статус:</label>
-            <select id="completion_status">
-                <option value="не виконано">Не виконано</option>
-                <option value="в процесі">В процесі</option>
-                <option value="виконано">Виконано</option>
-            </select>
-            <button type="submit">Додати</button>
-        </form>
-        <p id="message" role="status"></p>
+                    <div class="field field-quarter">
+                        <label for="completion_status">Статус виконання</label>
+                        <select id="completion_status">
+                            <option value="не виконано">Не виконано</option>
+                            <option value="в процесі">В процесі</option>
+                            <option value="виконано">Виконано</option>
+                        </select>
+                    </div>
 
-        <h2>Аналіз документів</h2>
-        <div class="stats">
-            <p>Всього: <strong id="total">0</strong></p>
-            <p>Виконано: <strong id="done">0</strong></p>
-            <p>В процесі: <strong id="in-progress">0</strong></p>
-            <p>Не виконано: <strong id="not-done">0</strong></p>
-        </div>
+                    <div class="field field-content">
+                        <label for="content">Короткий зміст</label>
+                        <input id="content" type="text" required placeholder="Введіть короткий опис документа">
+                    </div>
+                    <div class="form-actions">
+                        <button type="submit" class="primary-button"><span aria-hidden="true">＋</span> Додати документ</button>
+                    </div>
+                </form>
+                <p id="message" role="status" aria-live="polite"></p>
+            </section>
 
-        <h2>Список документів</h2>
-        <div class="filters">
-            <input id="search" type="search" placeholder="Пошук за номером або змістом">
-            <select id="type-filter"><option value="">Усі типи</option></select>
-        </div>
-        <div class="table-wrap">
-            <table id="documents-table">
-                <thead>
-                    <tr>
-                        <th>ID</th><th>Номер</th><th>Тип</th>
-                        <th>Зміст</th><th>Дата</th><th>Статус</th><th>Дія</th>
-                    </tr>
-                </thead>
-                <tbody></tbody>
-            </table>
-        </div>
+            <section class="panel">
+                <div class="section-heading">
+                    <span class="section-number">02</span>
+                    <div>
+                        <h2>Аналіз документів</h2>
+                        <p class="section-description">Коротка статистика за статусами виконання</p>
+                    </div>
+                </div>
+                <div class="stats">
+                    <div class="stat-card stat-total">
+                        <span class="stat-label">Всього документів</span>
+                        <strong id="total">0</strong>
+                        <span class="stat-mark" aria-hidden="true"></span>
+                    </div>
+                    <div class="stat-card stat-done">
+                        <span class="stat-label">Виконано</span>
+                        <strong id="done">0</strong>
+                        <span class="stat-mark" aria-hidden="true"></span>
+                    </div>
+                    <div class="stat-card stat-progress">
+                        <span class="stat-label">В процесі</span>
+                        <strong id="in-progress">0</strong>
+                        <span class="stat-mark" aria-hidden="true"></span>
+                    </div>
+                    <div class="stat-card stat-pending">
+                        <span class="stat-label">Не виконано</span>
+                        <strong id="not-done">0</strong>
+                        <span class="stat-mark" aria-hidden="true"></span>
+                    </div>
+                </div>
+            </section>
+
+            <section class="panel">
+                <div class="section-heading">
+                    <span class="section-number">03</span>
+                    <div>
+                        <h2>Список документів</h2>
+                        <p class="section-description">Пошук, перегляд та керування записами</p>
+                    </div>
+                </div>
+
+                <div class="filters">
+                    <div class="search-box">
+                        <span class="search-icon" aria-hidden="true">⌕</span>
+                        <input id="search" type="search" aria-label="Пошук документів"
+                               placeholder="Пошук за номером або змістом">
+                    </div>
+                    <select id="type-filter" aria-label="Фільтр за типом">
+                        <option value="">Усі типи документів</option>
+                    </select>
+                </div>
+
+                <div class="table-wrap">
+                    <table id="documents-table">
+                        <thead>
+                            <tr>
+                                <th>ID</th>
+                                <th>Номер</th>
+                                <th>Тип</th>
+                                <th>Зміст</th>
+                                <th>Дата</th>
+                                <th>Статус</th>
+                                <th>Дія</th>
+                            </tr>
+                        </thead>
+                        <tbody></tbody>
+                    </table>
+                </div>
+            </section>
+        </main>
+
+        <footer class="footer">
+            <span class="footer-flag" aria-hidden="true"></span>
+            Інформаційна система обліку документів
+        </footer>
     </div>
     <script src="{{ url_for('static', filename='script.js') }}"></script>
 </body>
