@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Облік документів</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
+</head>
+<body>
+    <div class="container">
+        <h1>Інформаційна система обліку документів</h1>
+        <p>Практична робота: реєстрація та аналіз документів</p>
+
+        <h2>Додати документ</h2>
+        <form id="document-form">
+            <label for="number">Номер:</label>
+            <input id="number" type="text" maxlength="50" required placeholder="Наприклад, 12/26">
+
+            <label for="type_id">Тип:</label>
+            <select id="type_id" required></select>
+
+            <label for="content">Короткий зміст:</label>
+            <input id="content" type="text" required placeholder="Про що документ">
+
+            <label for="date">Дата:</label>
+            <input id="date" type="date" required>
+
+            <label for="completion_status">Статус:</label>
+            <select id="completion_status">
+                <option value="не виконано">Не виконано</option>
+                <option value="в процесі">В процесі</option>
+                <option value="виконано">Виконано</option>
+            </select>
+            <button type="submit">Додати</button>
+        </form>
+        <p id="message" role="status"></p>
+
+        <h2>Аналіз документів</h2>
+        <div class="stats">
+            <p>Всього: <strong id="total">0</strong></p>
+            <p>Виконано: <strong id="done">0</strong></p>
+            <p>В процесі: <strong id="in-progress">0</strong></p>
+            <p>Не виконано: <strong id="not-done">0</strong></p>
+        </div>
+
+        <h2>Список документів</h2>
+        <div class="filters">
+            <input id="search" type="search" placeholder="Пошук за номером або змістом">
+            <select id="type-filter"><option value="">Усі типи</option></select>
+        </div>
+        <div class="table-wrap">
+            <table id="documents-table">
+                <thead>
+                    <tr>
+                        <th>ID</th><th>Номер</th><th>Тип</th>
+                        <th>Зміст</th><th>Дата</th><th>Статус</th><th>Дія</th>
+                    </tr>
+                </thead>
+                <tbody></tbody>
+            </table>
+        </div>
+    </div>
+    <script src="{{ url_for('static', filename='script.js') }}"></script>
+</body>
+</html>
